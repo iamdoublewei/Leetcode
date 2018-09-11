@@ -23,3 +23,20 @@ Output:
 "ffffffff"
 '''
 
+class Solution:
+    def toHex(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        if num < 0:
+            num += 2**32
+        if not num:
+            return '0'
+        s = '0123456789abcdef'
+        res = ''
+        while num:
+            res = s[num % 16] + res
+            num //= 16
+        return res
+        
