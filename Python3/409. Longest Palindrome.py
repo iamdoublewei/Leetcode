@@ -18,3 +18,21 @@ Explanation:
 One longest palindrome that can be built is "dccaccd", whose length is 7.
 '''
 
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        res = 0
+        lookup = set()
+        for i in s:
+            if i in lookup:
+                res += 2
+                lookup.remove(i)
+            else:
+                lookup.add(i)
+        if len(lookup):
+            return res + 1
+        else:
+            return res
