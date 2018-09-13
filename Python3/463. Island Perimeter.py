@@ -12,3 +12,26 @@ Answer: 16
 Explanation: The perimeter is the 16 yellow stripes in the image below:
 Refer to www.leetcode.com
 '''
+
+class Solution:
+    def islandPerimeter(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        res = 0
+        x = len(grid)
+        y = len(grid[0])
+        for i in range(x):
+            for j in range(y):
+                if grid[i][j]:
+                    if i - 1 < 0 or not grid[i-1][j]:
+                        res += 1
+                    if i + 1 >= x or not grid[i+1][j]:
+                        res += 1
+                    if j - 1 < 0 or not grid[i][j-1]:
+                        res += 1
+                    if j + 1 >= y or not grid[i][j+1]:
+                        res += 1
+        return res
+
