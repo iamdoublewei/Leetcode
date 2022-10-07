@@ -1,39 +1,48 @@
 '''
-Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+You are given a string s consisting of n characters which are either 'X' or 'O'.
+
+A move is defined as selecting three consecutive characters of s and converting them to 'O'. Note that if a move is applied to the character 'O', it will stay the same.
+
+Return the minimum number of moves required so that all the characters of s are converted to 'O'.
 
  
 
 Example 1:
 
-Input: nums = [-4,-1,0,3,10]
-Output: [0,1,9,16,100]
-Explanation: After squaring, the array becomes [16,1,0,9,100].
-After sorting, it becomes [0,1,9,16,100].
+Input: s = "XXX"
+Output: 1
+Explanation: XXX -> OOO
+We select all the 3 characters and convert them in one move.
 Example 2:
 
-Input: nums = [-7,-3,2,3,11]
-Output: [4,9,9,49,121]
+Input: s = "XXOX"
+Output: 2
+Explanation: XXOX -> OOOX -> OOOO
+We select the first 3 characters in the first move, and convert them to 'O'.
+Then we select the last 3 characters and convert them so that the final string contains all 'O's.
+Example 3:
+
+Input: s = "OOOO"
+Output: 0
+Explanation: There are no 'X's in s to convert.
  
 
 Constraints:
 
-1 <= nums.length <= 104
--104 <= nums[i] <= 104
-nums is sorted in non-decreasing order.
- 
-
-Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
+3 <= s.length <= 1000
+s[i] is either 'X' or 'O'.
 '''
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 class Solution:
-    def sortedSquares(self, nums: List[int]) -> List[int]:
-        res = [x * x for x in nums]
-        res.sort()
+    def minimumMoves(self, s: str) -> int:
+        cnt = 0
+        i = 0
         
-        return res
+        while i < len(s):
+            if s[i] == 'X':
+                cnt += 1
+                i += 3
+            else:
+                i += 1
+
+        return cnt
