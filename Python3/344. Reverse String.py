@@ -1,20 +1,32 @@
 '''
-Write a function that takes a string as input and returns the string reversed.
+Write a function that reverses a string. The input string is given as an array of characters s.
+
+You must do this by modifying the input array in-place with O(1) extra memory.
+
+ 
 
 Example 1:
 
-Input: "hello"
-Output: "olleh"
+Input: s = ["h","e","l","l","o"]
+Output: ["o","l","l","e","h"]
 Example 2:
 
-Input: "A man, a plan, a canal: Panama"
-Output: "amanaP :lanac a ,nalp a ,nam A"
+Input: s = ["H","a","n","n","a","h"]
+Output: ["h","a","n","n","a","H"]
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+s[i] is a printable ascii character.
 '''
 
 class Solution:
-    def reverseString(self, s):
+    def reverseString(self, s: List[str]) -> None:
         """
-        :type s: str
-        :rtype: str
+        Do not return anything, modify s in-place instead.
         """
-        return s[::-1]
+        for i in range(len(s) // 2):         
+            t = s[i]
+            s[i] = s[len(s) - i - 1]
+            s[len(s) - i - 1] = t
